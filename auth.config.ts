@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 export const authConfig = {
   pages: {
-    signIn: '/login',
+    signIn: '/',
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {

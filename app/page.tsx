@@ -1,16 +1,10 @@
-import exp from 'constants'
-import Link from 'next/link'
+import LoginForm from './ui/login-form'
 
 const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-2 pt-2 backdrop-blur-2xl light:border-neutral-800 light:bg-zinc-800/30 light:from-inherit ">
-        <Link href="/login" >Login</Link>
-      </div>
-
-      <div >
-        Welcome to Qred App
-      </div>
+    <main className="bg-sky-500 flex min-h-screen flex-col items-center justify-between py-8 px-4">
+      <h1 className='my-5 text-white font-bold text-lg'>Welcome to Qred App</h1>
+      <LoginForm />
     </main>
   )
 }
