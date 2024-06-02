@@ -50,19 +50,15 @@ const LoginForm = () => {
             </div>
           </div>
         </div>
-        <button aria-disabled={pending} className="bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded self-center">
+        <button aria-disabled={pending} className="bg-sky-500 hover:bg-sky-700 text-white text-xs font-bold py-2 px-4 rounded self-center">
           Login
         </button>
         <div
-          className="flex  h-8 items-end space-x-1"
+          className="flex h-8 items-end space-x-1"
           aria-live="polite"
           aria-atomic="true"
         >
-          {errorMessage && (
-            <>
-              <p className="text-xs text-red-500">{errorMessage}</p>
-            </>
-          )}
+          {errorMessage && (<p className="text-xs text-red-500">{errorMessage}</p>)}
         </div>
       </div>
     </form>

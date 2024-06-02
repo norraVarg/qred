@@ -8,9 +8,9 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
-      const isUserPage = nextUrl.pathname.startsWith('/user')
+      const isAdminPage = nextUrl.pathname.startsWith('/admin')
 
-      if (isUserPage) {
+      if (isAdminPage) {
         if (isLoggedIn) {
           return true
         }
@@ -19,7 +19,7 @@ export const authConfig = {
       } else if (isLoggedIn) {
         // open issue: User Keeps getting redirected to /login after successful Sign-In
         // https://github.com/vercel/next.js/issues/59218
-        return NextResponse.redirect(new URL('/user', nextUrl))
+        return NextResponse.redirect(new URL('/admin', nextUrl))
       }
 
       return true
