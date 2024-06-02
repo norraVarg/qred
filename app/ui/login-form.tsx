@@ -10,7 +10,7 @@ const LoginForm = () => {
   return (
     <form action={dispatch} >
       <div className="flex flex-col rounded-lg bg-white px-6 pb-4 pt-8 space-y-5">
-        <h2>Please log in to continue.</h2>
+        <h2>Please sign in to continue.</h2>
         <div className="space-y-4 w-full">
           <div className='space-y-2'>
             <label

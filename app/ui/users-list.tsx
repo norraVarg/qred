@@ -9,7 +9,7 @@ const UsersList = (props: Props) => {
 
   return (<main className='grid grid-rows-12 h-screen px-5 py-3'>
     <h1 className="text-lg font-semibold leading-6 text-gray-900">Users</h1>
-    <ul role="list" className="row-start-2 row-span-10 divide-y divide-gray-100 overflow-y-auto">
+    <ul role="list" className="row-start-2 row-span-10 divide-y divide-gray-200 overflow-y-auto">
       {users.map(user => (
         <li key={user.id} className="flex justify-between gap-x-6 py-4">
           <div className="flex min-w-0 gap-x-4">

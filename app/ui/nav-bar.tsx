@@ -1,10 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import useClickOutside from '../lib/hooks/useClickOutside'
+import { signOutAction } from '../lib/actions'
 
-const navItems = [
+const NAV_ITEMS = [
   { name: 'Home', href: '/admin' },
   { name: 'Users', href: '/admin/users' },
 ]
@@ -13,6 +15,14 @@ const NavBar = () => {
   const [showUserMenu, setShowMenu] = useState(false)
   const [showNavMenu, setShowNavMenu] = useState(false)
   const pathname = usePathname()
+
+  const userMenuRef = useRef(null)
+  const hideUserMenu = () => {
+    if (showUserMenu) {
+      setShowMenu(false)
+    }
+  }
+  useClickOutside(userMenuRef, hideUserMenu)
 
   const toggleNavMenu = () => {
     setShowNavMenu(!showNavMenu)
@@ -45,7 +55,7 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div ref={userMenuRef} className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <div className="relative ml-3">
             <div>
               <button onClick={toggleUserMenu} type="button" className="relative inline-flex items-center justify-center rounded-md p-1 text-white hover:bg-sky-700 hover:text-white focus:outline-none focus:ring-1 focus:ring-inset focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -58,9 +68,10 @@ const NavBar = () => {
             </div>
 
             {showUserMenu && (
-              <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex={-1}>
+              <div className="absolute right-0 z-10 mt-1 w-48 origin-top-right divide-y divide-gray-200 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex={-1}>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-0">Your Profile</a>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">Sign out</a>
+                <button className="flex w-full px-4 py-2 text-sm text-gray-700"
+                  onClick={() => signOutAction()}>Sign out</button>
               </div>
             )}
           </div>
@@ -71,7 +82,7 @@ const NavBar = () => {
     {showNavMenu && (
       <div className="sm:hidden" id="mobile-menu">
         <div className="space-y-1 px-2 pb-3 pt-2">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <Link onClick={() => setShowNavMenu(false)} key={item.name} href={item.href} className={`text-white hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium ${pathname === item.href ? 'bg-sky-700' : ''}`}> {item.name}</Link>
           ))}
         </div>
