@@ -2,16 +2,16 @@
 
 import { useRef } from 'react'
 import { fetchUsers } from '../../lib/features/users/usersSlice'
-import { useAppSelector, useAppStore } from '../../lib/features/users/usersHooks'
 import UsersList from '../../ui/users-list'
 import UsersProvider from '../../lib/features/users/UsersStoreProvider'
+import { useUsersSelector, useUsersStore } from '@/app/lib/features/users/usersHooks'
 
 const UsersPage = () => {
   return (<UsersProvider><UsersListComponent /></UsersProvider>)
 }
 
 const UsersListComponent = () => {
-  const store = useAppStore()
+  const store = useUsersStore()
   const initialized = useRef(false)
 
   if (!initialized.current) {
@@ -19,7 +19,7 @@ const UsersListComponent = () => {
     initialized.current = true
   }
 
-  const users = useAppSelector(state => state.users)
+  const users = useUsersSelector(state => state.users)
 
   return <UsersList users={users} />
 }
