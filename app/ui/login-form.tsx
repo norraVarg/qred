@@ -13,41 +13,33 @@ const LoginForm = () => {
         <h2>Please sign in to continue.</h2>
         <div className="space-y-4 w-full">
           <div className='space-y-2'>
-            <label
-              className="block text-xs font-medium text-gray-900"
-              htmlFor="email"
-            >
+            <label className="block text-xs font-medium text-gray-900" htmlFor="email">
               Email
             </label>
-            <div className="relative">
-              <input
-                className="peer block w-full rounded-md border border-gray-300 py-[9px] px-3 text-sm outline-2 outline-sky-500 placeholder:text-gray-500 placeholder:text-xs"
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Enter your email address"
-                required
-              />
-            </div>
+            <input
+              className="peer block w-full rounded-md border border-gray-300 py-[9px] px-3 text-sm outline-2 outline-sky-500 placeholder:text-gray-500 placeholder:text-xs"
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+              autoComplete='email'
+            />
           </div>
           <div className='space-y-2'>
-            <label
-              className="block text-xs font-medium text-gray-900"
-              htmlFor="password"
-            >
+            <label className="block text-xs font-medium text-gray-900" htmlFor="password">
               Password
             </label>
-            <div className="relative">
-              <input
-                className="peer block w-full rounded-md border border-gray-300 py-[9px] px-3 text-sm outline-2 outline-sky-500 placeholder:text-gray-500 placeholder:text-xs"
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                required
-                minLength={6}
-              />
-            </div>
+            <input
+              className="peer block w-full rounded-md border border-gray-300 py-[9px] px-3 text-sm outline-2 outline-sky-500 placeholder:text-gray-500 placeholder:text-xs"
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              required
+              minLength={6}
+              autoComplete="password"
+            />
           </div>
         </div>
         <button aria-disabled={pending} className="bg-sky-500 hover:bg-sky-700 text-white text-xs font-bold py-2 px-4 rounded self-center">

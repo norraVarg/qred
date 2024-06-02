@@ -67,7 +67,7 @@ const NavBar = () => {
 
             {showUserMenu && (
               <div onClick={hideUserMenu} className="absolute right-0 z-10 mt-1 w-48 origin-top-right divide-y divide-gray-200 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex={-1}>
-                <Link href="/admin/my-profile" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-0">Your Profile</Link>
+                <Link href="/admin/account" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-0">Account</Link>
                 <button className="flex w-full px-4 py-2 text-sm text-gray-700"
                   onClick={() => signOutAction()}>Sign out</button>
               </div>
