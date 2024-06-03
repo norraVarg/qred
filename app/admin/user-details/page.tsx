@@ -19,6 +19,10 @@ const UserDetailsComponent = () => {
   const params = useSearchParams()
   const id = params.get('id')
 
+  const user = useUserSelector((state) => state.user)
+  const fetchStatus = useUserSelector((state) => state.fetchStatus)
+  const message = useUserSelector((state) => state.message)
+
   if (!id) {
     return (<SomethingWentWrong />)
   }
@@ -27,10 +31,6 @@ const UserDetailsComponent = () => {
     store.dispatch(fetchUserById(id))
     initialized.current = true
   }
-
-  const user = useUserSelector((state) => state.user)
-  const fetchStatus = useUserSelector((state) => state.fetchStatus)
-  const message = useUserSelector((state) => state.message)
 
   const submitForm = (userForm: UserForm) => {
     if (id) {
