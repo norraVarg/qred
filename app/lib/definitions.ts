@@ -1,5 +1,3 @@
-import { User } from 'next-auth'
-
 export interface QredUser {
   id: number
   name: string
