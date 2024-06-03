@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="fixed w-full">
         <NavBar />
       </div>
-      <div className="grow pt-12 overflow-y-hidden">{children}</div>
+      <div className="grow pt-12 h-screen overflow-y-hidden">{children}</div>
     </div>
   )
 }

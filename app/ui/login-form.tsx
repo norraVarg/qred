@@ -9,7 +9,7 @@ const LoginForm = () => {
 
   return (
     <form action={dispatch} >
-      <div className="flex flex-col rounded-lg bg-white px-6 pb-4 pt-8 space-y-5">
+      <div className="flex flex-col space-y-8 rounded-lg bg-white px-6 pb-4 pt-8">
         <h2>Please sign in to continue.</h2>
         <div className="space-y-4 w-full">
           <div className='space-y-2'>
@@ -46,7 +46,7 @@ const LoginForm = () => {
           Login
         </button>
         <div
-          className="flex h-8 items-end space-x-1"
+          className="flex h-6 items-end space-x-1"
           aria-live="polite"
           aria-atomic="true"
         >
