@@ -19,9 +19,10 @@ const UsersListComponent = () => {
     initialized.current = true
   }
 
-  const users = useUsersSelector(state => state.users)
+  const ids = useUsersSelector((state) => state.ids)
+  const entities = useUsersSelector((state) => state.entities)
 
-  return <UsersList users={users} />
+  return <UsersList ids={ids} entities={entities} />
 }
 
 export default UsersPage

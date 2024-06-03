@@ -1,17 +1,15 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createAsyncThunk, createSlice, createEntityAdapter } from "@reduxjs/toolkit"
 import { QredUser } from '../../definitions'
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users'
 
-type UserState = {
-  users: QredUser[],
-  fetchStatus: string
-}
+const usersAdapter = createEntityAdapter<QredUser>({
+  sortComparer: (a, b) => a.name.localeCompare(b.name),
+})
 
-const initialState: UserState = {
-  users: [],
-  fetchStatus: ''
-}
+const initialState = usersAdapter.getInitialState({
+  fetchStatus: '',
+})
 
 export const fetchUsers = createAsyncThunk('fetch-users', async () => {
   const response = await fetch(API_URL)
@@ -24,8 +22,8 @@ const usersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.fulfilled, (state, action: PayloadAction<QredUser[]>) => {
-      state.users = action.payload
       state.fetchStatus = 'success'
+      usersAdapter.setAll(state, action.payload)
     }).addCase(fetchUsers.pending, (state) => {
       state.fetchStatus = 'loading'
     }).addCase(fetchUsers.rejected, (state) => {
