@@ -134,7 +134,7 @@ const UserDetailsForm = (props: Props) => {
               {showFormErrors && !!formErrors.email && (<p className='text-xs text-red-600'>{formErrors.email}</p>)}
             </div>
             <input
-              className={`${!!formErrors.email && showFormErrors && 'outline-red-600 border-red-600'} disabled:bg-slate-50 disabled:text-slate-500 peer block w-full rounded-md border border-gray-300 py-[9px] px-3 text-sm outline-2 outline-sky-500 placeholder:text-gray-500 placeholder:text-xs`}
+              className={`${!!formErrors.email && showFormErrors ? 'outline-red-600 border-red-600' : 'outline-sky-500 border-gray-300'} disabled:bg-slate-50 disabled:text-slate-500 peer block w-full rounded-md border py-[9px] px-3 text-sm outline-2 placeholder:text-gray-500 placeholder:text-xs`}
               id="email"
               name="email"
               placeholder="Enter email"
@@ -155,7 +155,7 @@ const UserDetailsForm = (props: Props) => {
               {showFormErrors && !!formErrors.phone && (<p className='text-xs text-red-600'>{formErrors.phone}</p>)}
             </div>
             <input
-              className={`${!!formErrors.phone && showFormErrors && 'outline-red-600 border-red-600'} disabled:bg-slate-50 disabled:text-slate-500 peer block w-full rounded-md border border-gray-300 py-[9px] px-3 text-sm outline-2 outline-sky-500 placeholder:text-gray-500 placeholder:text-xs`}
+              className={`${!!formErrors.phone && showFormErrors ? 'outline-red-600 border-red-600' : 'outline-sky-500 border-gray-300'} disabled:bg-slate-50 disabled:text-slate-500 peer block w-full rounded-md border py-[9px] px-3 text-sm outline-2 placeholder:text-gray-500 placeholder:text-xs`}
               id="phone"
               name="phone"
               placeholder="Enter phone number"
