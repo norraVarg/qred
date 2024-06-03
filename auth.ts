@@ -1,14 +1,17 @@
-import NextAuth from 'next-auth'
+import NextAuth, { User } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import bcrypt from 'bcrypt'
 import { sql } from '@vercel/postgres'
 import { z } from 'zod'
-import type { QredUser } from '@/app/lib/definitions'
 import { authConfig } from './auth.config'
 
-async function getUser(email: string): Promise<QredUser | undefined> {
+interface AuthUser extends User {
+  password: string
+}
+
+async function getUser(email: string): Promise<AuthUser | undefined> {
   try {
-    const user = await sql<QredUser>`SELECT * FROM users WHERE email=${email}`
+    const user = await sql<AuthUser>`SELECT * FROM users WHERE email=${email}`
     return user.rows[0]
   } catch (error) {
     console.error('Failed to fetch user:', error)
@@ -35,7 +38,6 @@ export const { auth, signIn, signOut } = NextAuth({
           if (passwordsMatch) return user
         }
 
-        console.log('Invalid credentials')
         return null
       },
     }),

@@ -1,9 +1,9 @@
 'use client'
 
+import { UserForm } from '@/app/lib/definitions'
 import UserProvider from '@/app/lib/features/user/UserStoreProvider'
 import { useUserSelector, useUserStore } from '@/app/lib/features/user/userHooks'
-import { fetchUserById } from '@/app/lib/features/user/userSlice'
-import FetchingData from '@/app/ui/fetching-data'
+import { fetchUserById, resetStatusAndMessage, updateUserById } from '@/app/lib/features/user/userSlice'
 import SomethingWentWrong from '@/app/ui/something-went-wrong'
 import UserDetailsForm from '@/app/ui/user-details-form'
 import { useSearchParams } from 'next/navigation'
@@ -20,7 +20,6 @@ const UserDetailsComponent = () => {
   const id = params.get('id')
 
   if (!id) {
-    console.log('No id')
     return (<SomethingWentWrong />)
   }
 
@@ -31,21 +30,30 @@ const UserDetailsComponent = () => {
 
   const user = useUserSelector((state) => state.user)
   const fetchStatus = useUserSelector((state) => state.fetchStatus)
+  const message = useUserSelector((state) => state.message)
 
-  if (fetchStatus === 'loading') {
-    return (<FetchingData />)
+  const submitForm = (userForm: UserForm) => {
+    if (id) {
+      store.dispatch(updateUserById({ id, userForm }))
+    }
   }
 
-  if (fetchStatus === 'error') {
-    return (<SomethingWentWrong />)
+  const cancelEdit = () => {
+    store.dispatch(resetStatusAndMessage())
   }
 
-  if (!user) {
-    return (<SomethingWentWrong />)
+  if (user === null) {
+    return (<SomethingWentWrong message={message} />)
   }
 
   return (
-    <UserDetailsForm user={user} />
+    <UserDetailsForm
+      user={user}
+      fetchStatus={fetchStatus}
+      message={message}
+      submitForm={submitForm}
+      cancelEdit={cancelEdit}
+    />
   )
 }
 
